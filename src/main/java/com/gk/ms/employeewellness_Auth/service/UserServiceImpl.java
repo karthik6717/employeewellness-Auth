@@ -36,7 +36,7 @@ public class UserServiceImpl {
 
         if (authentication.isAuthenticated()) {
         	User user = userRepository.findByUsername(username);
-            return jwtService.generateToken(username, user.getRole());
+            return jwtService.generateToken(username, user.getRole(),user.getEmployeeId());
         }
 
         return "fail";

@@ -34,9 +34,11 @@ public class JwtService {
 //        }
 //    }
 
-	public String generateToken(String username, Role role) {
+	public String generateToken(String username, Role role,Long employeeId) {
 		Map<String, Object> claims = new HashMap<>();
 		claims.put("role", role);
+		//EmployeeId
+		claims.put("employeeId", employeeId);
 
 		return Jwts.builder().claims().add(claims).subject(username).issuedAt(new Date(System.currentTimeMillis()))
 				.expiration(new Date(System.currentTimeMillis() + 60 * 60 * 1000)).and().signWith(getKey()).compact();
